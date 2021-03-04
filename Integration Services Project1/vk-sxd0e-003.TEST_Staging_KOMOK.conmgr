@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="vk-sxd0e-003.TEST_Staging_KOMOK"
+  DTS:DTSID="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=vk-sxd0e-003;Initial Catalog=TEST_Staging_KOMOK;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

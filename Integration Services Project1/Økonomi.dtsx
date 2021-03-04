@@ -1,0 +1,182 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/26/2021 11:08:53 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VK-C0D0E-360"
+  DTS:CreatorName="I04\vk431"
+  DTS:DTSID="{0F8A8AF1-E2D1-4091-BDC5-C558DF006FC0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LocaleID="1044"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{1C0A7F97-27E2-4E04-8E47-70794333529F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Økonomi 1"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{7B1775E4-6D3C-43D4-8C83-8FD2C08EAE01}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Økonomi 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Økonomi 1\12137 Finansielle nøkkeltall fra bevilgnings- og balanseregnskapet i kroner per innbygger, etter region, regnskapsbegrep, statistikkvariabel og år"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{59DF6969-1301-4FFE-AB04-BECF22D69462}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="12137 Finansielle nøkkeltall fra bevilgnings- og balanseregnskapet i kroner per innbygger, etter region, regnskapsbegrep, statistikkvariabel og år"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12137'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsbregrepkode varchar(5), Statistikkvariabelkode varchar(18), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode Varchar(5), Regionnavn varchar(50), Regnskapsbregrepkode varchar(5), Regnskapsbregrepnavn varchar(81), Statistikkvariabelkode varchar(18), Statistikkvariabelnavn varchar(24), Tid varchar(4), Tid2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar2 @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12137]&#xA;&#xA;Select&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Regnskapsbregrepkode,&#xA;&#x9;&#x9;met.Regnskapsbregrepnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met2.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid,&#xA;&#x9;&#x9;dat.Verdi&#xA;&#xA;from @t dat &#xA;Join @m met ON dat.Regnskapsbregrepkode = met.Regnskapsbregrepkode&#xA;Join @m met2 ON dat.Statistikkvariabelkode = met2.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Økonomi 1\12330 Finansiering av driften, etter region, regnskapsbegrep, statistikkvariabel og år"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{48C49568-A158-4F10-B171-5301D31E6206}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="12330 Finansiering av driften, etter region, regnskapsbegrep, statistikkvariabel og år"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12330'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsbregrepkode varchar(5), Statistikkvariabelkode varchar(14), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode Varchar(5), Regionnavn varchar(50), Regnskapsbregrepkode varchar(5), Regnskapsbregrepnavn varchar(107), Statistikkvariabelkode varchar(14), Statistikkvariabelnavn varchar(41), Tid varchar(4), Tid2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar2 @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12330]&#xA;&#xA;Select&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Regnskapsbregrepkode,&#xA;&#x9;&#x9;met.Regnskapsbregrepnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met2.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid,&#xA;&#x9;&#x9;dat.Verdi&#xA;&#xA;from @t dat &#xA;Join @m met ON dat.Regnskapsbregrepkode = met.Regnskapsbregrepkode&#xA;Join @m met2 ON dat.Statistikkvariabelkode = met2.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Økonomi 1\12333 Finansiering av investeringene, etter region, regnskapsbegrep, statistikkvariabel og år"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7DDBFB85-DB1D-4E92-AED1-31CA70E54A69}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="12333 Finansiering av investeringene, etter region, regnskapsbegrep, statistikkvariabel og år"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12333'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsbregrepkode varchar(5), Statistikkvariabelkode varchar(15), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode Varchar(5), Regionnavn varchar(50), Regnskapsbregrepkode varchar(5), Regnskapsbregrepnavn varchar(84), Statistikkvariabelkode varchar(15), Statistikkvariabelnavn varchar(46), Tid varchar(4), Tid2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar2 @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12333]&#xA;&#xA;Select&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Regnskapsbregrepkode,&#xA;&#x9;&#x9;met.Regnskapsbregrepnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met2.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid,&#xA;&#x9;&#x9;dat.Verdi&#xA;&#xA;from @t dat &#xA;Join @m met ON dat.Regnskapsbregrepkode = met.Regnskapsbregrepkode&#xA;Join @m met2 ON dat.Statistikkvariabelkode = met2.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Økonomi 1\12362 Utgifter til tjenesteområdene, etter region, funksjon, art, statistikkvariabel og år"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DE0E416B-501D-4DF7-BA02-83875FB2D4A6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="12362 Utgifter til tjenesteområdene, etter region, funksjon, art, statistikkvariabel og år"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12362'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Funksjonkode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(20), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode Varchar(5), Regionnavn varchar(50), Funksjonkode varchar(5), Funksjonnavn varchar(86), Artkode varchar(5), Artnavn varchar(59), Statistikkvariabelkode varchar(20), Statistikkvariabelnavn varchar(34), Tid varchar(4), Tid2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar2 @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12362]&#xA;&#xA;Select&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Funksjonkode,&#xA;&#x9;&#x9;met.Funksjonnavn,&#xA;&#x9;&#x9;dat.Artkode,&#xA;&#x9;&#x9;met2.Artnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met3.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid,&#xA;&#x9;&#x9;dat.Verdi&#xA;&#xA;from @t dat &#xA;Join @m met ON dat.Funksjonkode = met.Funksjonkode&#xA;Join @m met2 ON dat.Artkode = met2.Artkode&#xA;Join @m met3 ON dat.Statistikkvariabelkode = met3.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Økonomi 1\12364 Finansielle grunnlagsdata, etter region, regnskapsbegrep, statistikkvariabel og år"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{44F0FE89-C4E8-4952-81AF-5AB105EE9E1C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="12364 Finansielle grunnlagsdata, etter region, regnskapsbegrep, statistikkvariabel og år"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12364'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsbegrepkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode Varchar(150), Regionnavn varchar(50), Regnskapsbegrepkode varchar(5), Regnskapsbegrepnavn varchar(107), Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), Tid varchar(4), Tid2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar2 @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12364]&#xA;&#xA;Select&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Regnskapsbegrepkode,&#xA;&#x9;&#x9;met.Regnskapsbegrepnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met2.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid,&#xA;&#x9;&#x9;dat.Verdi&#xA;from @t dat &#xA;Join @m met ON dat.Regnskapsbegrepkode = met.Regnskapsbegrepkode&#xA;Join @m met2 ON dat.Statistikkvariabelkode = met2.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Økonomi 1\12858 Hovedtall for drift, investering og finansiering, etter region, regnskapsbegrep, statistikkvariabel og år"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9BABEB06-193F-4120-8850-84FB59BE7160}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="12858 Hovedtall for drift, investering og finansiering, etter region, regnskapsbegrep, statistikkvariabel og år"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12858'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsbegrepkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode Varchar(150), Regionnavn varchar(50), Regnskapsbegrepkode varchar(5), Regnskapsbegrepnavn varchar(53), Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), Tid varchar(4), Tid2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar2 @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12858]&#xA;&#xA;Select&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Regnskapsbegrepkode,&#xA;&#x9;&#x9;met.Regnskapsbegrepnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met2.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid,&#xA;&#x9;&#x9;dat.Verdi&#xA;from @t dat &#xA;Join @m met ON dat.Regnskapsbegrepkode = met.Regnskapsbegrepkode&#xA;Join @m met2 ON dat.Statistikkvariabelkode = met2.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="217,76"
+          Id="Package\Økonomi 1\12858 Hovedtall for drift, investering og finansiering, etter region, regnskapsbegrep, statistikkvariabel og år"
+          TopLeft="96,33" />
+        <NodeLayout
+          Size="215,87"
+          Id="Package\Økonomi 1\12364 Finansielle grunnlagsdata, etter region, regnskapsbegrep, statistikkvariabel og år"
+          TopLeft="96,127" />
+        <NodeLayout
+          Size="202,93"
+          Id="Package\Økonomi 1\12362 Utgifter til tjenesteområdene, etter region, funksjon, art, statistikkvariabel og år"
+          TopLeft="99,222" />
+        <NodeLayout
+          Size="224,82"
+          Id="Package\Økonomi 1\12333 Finansiering av investeringene, etter region, regnskapsbegrep, statistikkvariabel og år"
+          TopLeft="378,34" />
+        <NodeLayout
+          Size="217,80"
+          Id="Package\Økonomi 1\12330 Finansiering av driften, etter region, regnskapsbegrep, statistikkvariabel og år"
+          TopLeft="382,133" />
+        <NodeLayout
+          Size="213,88"
+          Id="Package\Økonomi 1\12137 Finansielle nøkkeltall fra bevilgnings- og balanseregnskapet i kroner per innbygger, etter region, regnskapsbegrep, statistikkvariabel og år"
+          TopLeft="382,227" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="713,374"
+          Size="713,417"
+          Id="Package\Økonomi 1"
+          TopLeft="337,47" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
