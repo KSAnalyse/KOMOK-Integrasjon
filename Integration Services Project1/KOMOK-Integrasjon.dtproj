@@ -26,11 +26,12 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">VK-C0D0E-360</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGLKfSHntzkOM3OofATHtCgAAAAACAAAAAAADZgAAwAAAABAAAAC8Ncijv6q2lAr9hX5G538+AAAAAASAAACgAAAAEAAAAIo2/YGXXUpiwuNN4nxFylyIAAAAAX3PeGLMMOLloFHB0JY++1wWpby0p9XFU1c+cemKoQNotE9l2cti616Kvqv2zj1fY/3a5LGjR4Yipw1METEzTTbBHQzfeS32CG8P6oGvsxPvk41cWert3nrPYckkIluwk4lVS4i3uivRhcueWxI6n1p3yEEZZixsSaxHq9rc4ZwouGgUgyJN8hQAAADEZuVKy4uEVZ0CLZkdnrdyD4LqZw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGLKfSHntzkOM3OofATHtCgAAAAACAAAAAAADZgAAwAAAABAAAACBrqQQPw4WKlkF7e9137K7AAAAAASAAACgAAAAEAAAAP6mI+YGVfGMZfodBCjY3sWIAAAA4Dx+NcwtCMByWh/KJi4ZbZYOWTVZH0ykrqNzg3AM6KnZkPIKbZFUsQT5os6bwch2S3kpvHZOY+g+JGohI9vXOuDMLP8ZtLQMJyRWaHnUWYCZM/5RpfhxRLqVP9vlfIIkEwWKTqd/W3mnpznWlRFjWFccxRuPlAA8Fc42VIbWvLa2WOXMTkaV+BQAAABmqA+d29qz2jXQQ3gYBzsvAuqUXA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Økonomi.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SSB Regioner.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SSB Økonomi.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="vk-sxd0e-003.TEST_Staging_KOMOK.conmgr" />
@@ -157,16 +158,33 @@
             </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Økonomi.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="SSB Regioner.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{0F8A8AF1-E2D1-4091-BDC5-C558DF006FC0}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{E235518B-13C9-432D-AED0-5AE751CB5100}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SSB Regioner</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{1C0A7F97-27E2-4E04-8E47-70794333529F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E3D7CFCE-DE0A-457B-89B9-BCD87AFF5CFC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="SSB Økonomi.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{C3B485EE-BCE3-4FCF-9F01-79684F1244B0}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SSB Økonomi</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{775B01D3-EEAE-4E07-BFF7-F226039FD3B6}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
