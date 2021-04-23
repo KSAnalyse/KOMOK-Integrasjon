@@ -7,12 +7,12 @@
   DTS:CreatorName="I04\vk431"
   DTS:DTSID="{C3B485EE-BCE3-4FCF-9F01-79684F1244B0}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
   DTS:LocaleID="1044"
   DTS:ObjectName="SSB Økonomi"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{775B01D3-EEAE-4E07-BFF7-F226039FD3B6}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{B8A5623B-BFDE-415C-8988-86AEA0C2E88C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -282,7 +282,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
-              SQLTask:SqlStatementSource="-- Variabels&#xA;declare @TableVar varchar(5)&#xA;declare @TableName varchar(150)&#xA;declare @ConFilter varchar(700)&#xA;declare @Year int&#xA;&#xA;Set @TableVar = '12367'&#xA;Set @TableName = (select table_name from information_schema.tables where table_name LIKE 'SSB_' + @TableVar + '%')&#xA;Set @Year = ?&#xA;&#xA;Set @ConFilter = CONCAT('KOKregnskapsomfa0000=A&amp;Tid=', CAST(@Year as VARCHAR(4)))&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsomfangkode varchar(1), Funksjonskode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode varchar(5), Regionnavn varchar(50), Regnskapsomfangkode varchar(1), Regnskapsomfangnavn varchar(57), Funksjonskode varchar(5), Funksjonsnavn varchar(86), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Artkode varchar(5), Artnavn varchar(75),  Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), År varchar(4), År2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Insert&#xA;&#x9;insert @t exec SSB_Values_AlleAar2 @TabellNummer=@TableVar, @Filter=@ConFilter&#xA;&#x9;insert @m exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;DELETE FROM [SSB_12367] WHERE Tid = @Year&#xA;&#xA;INSERT INTO [SSB_12367]&#xA;&#xA;SELECT&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Regnskapsomfangkode,&#xA;&#x9;&#x9;met.Regnskapsomfangnavn,&#xA;&#x9;&#x9;dat.Funksjonskode,&#xA;&#x9;&#x9;met2.Funksjonsnavn,&#xA;&#x9;&#x9;dat.Artkode,&#xA;&#x9;&#x9;met3.Artnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met4.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;FROM @t dat&#xA;JOIN @m met ON met.Regnskapsomfangkode = dat.Regnskapsomfangkode&#xA;JOIN @m met2 ON&#x9;met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m met3 On met3.Artkode = dat.Artkode&#xA;Join @m met4 On met4.Statistikkvariabelkode = dat.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="-- Variabels&#xA;declare @TableVar varchar(5)&#xA;declare @TableName varchar(150)&#xA;declare @ConFilter varchar(700)&#xA;declare @Year int&#xA;&#xA;Set @TableVar = '12367'&#xA;Set @TableName = (select table_name from information_schema.tables where table_name LIKE 'SSB_' + @TableVar + '%')&#xA;Set @Year = ?&#xA;&#xA;Set @ConFilter = CONCAT('KOKregnskapsomfa0000=A&amp;Tid=', CAST(@Year as VARCHAR(4)))&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsomfangkode varchar(1), Funksjonskode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode varchar(5), Regionnavn varchar(50), Regnskapsomfangkode varchar(1), Regnskapsomfangnavn varchar(57), Funksjonskode varchar(5), Funksjonsnavn varchar(86), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Artkode varchar(5), Artnavn varchar(75),  Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), År varchar(4), År2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Insert&#xA;&#x9;insert @t exec SSB_Values_AlleAar2 @TabellNummer=@TableVar, @Filter=@ConFilter&#xA;&#x9;insert @m exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;DELETE FROM [SSB_12367] WHERE Tid = @Year&#xA;&#xA;INSERT INTO [SSB_12367]&#xA;&#xA;SELECT&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Funksjonskode,&#xA;&#x9;&#x9;met2.Funksjonsnavn,&#xA;&#x9;&#x9;dat.Artkode,&#xA;&#x9;&#x9;met3.Artnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met4.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;FROM @t dat&#xA;JOIN @m met2 ON&#x9;met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m met3 On met3.Artkode = dat.Artkode&#xA;Join @m met4 On met4.Statistikkvariabelkode = dat.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::_5thYear"
@@ -326,15 +326,6 @@
               VSTAMinorVersion="0"
               Language="CSharp"
               ReadWriteVariables="User::_5thYear">
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -454,6 +445,35 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_a438dd0661ab403db3a6fd6225be81ad.Properties.Settings.get_Default():ST_a438dd0661ab403db3a6fd6225be81ad.Properties.Sett" +
+    "ings")]
+
+namespace ST_a438dd0661ab403db3a6fd6225be81ad.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
@@ -597,34 +617,35 @@ namespace ST_a438dd0661ab403db3a6fd6225be81ad
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_a438dd0661ab403db3a6fd6225be81ad")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_a438dd0661ab403db3a6fd6225be81ad")]
+[assembly: AssemblyCopyright("Copyright @  2021")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_a438dd0661ab403db3a6fd6225be81ad.Properties.Settings.get_Default():ST_a438dd0661ab403db3a6fd6225be81ad.Properties.Sett" +
-    "ings")]
-
-namespace ST_a438dd0661ab403db3a6fd6225be81ad.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="ST_a438dd0661ab403db3a6fd6225be81ad.csproj"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -725,35 +746,14 @@ namespace ST_a438dd0661ab403db3a6fd6225be81ad.Properties {
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_a438dd0661ab403db3a6fd6225be81ad")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_a438dd0661ab403db3a6fd6225be81ad")]
-[assembly: AssemblyCopyright("Copyright @  2021")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -974,7 +974,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="12333 Finansiering av investeringene, etter region, regnskapsbegrep, statistikkvariabel og år"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -991,7 +991,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="12364 Finansielle grunnlagsdata, etter region, regnskapsbegrep, statistikkvariabel og år"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1008,12 +1008,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="12367 Year 4"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
-              SQLTask:SqlStatementSource="-- Variabels&#xA;declare @TableVar varchar(5)&#xA;declare @TableName varchar(150)&#xA;declare @ConFilter varchar(700)&#xA;declare @Year int&#xA;&#xA;Set @TableVar = '12367'&#xA;Set @TableName = (select table_name from information_schema.tables where table_name LIKE 'SSB_' + @TableVar + '%')&#xA;Set @Year = ?&#xA;&#xA;Set @ConFilter = CONCAT('KOKregnskapsomfa0000=A&amp;Tid=', CAST(@Year as VARCHAR(4)))&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; declare @t table(Regionkode varchar(5), Regnskapsomfangkode varchar(1), Funksjonskode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA; declare @m table(Regionkode varchar(5), Regionnavn varchar(50), Regnskapsomfangkode varchar(1), Regnskapsomfangnavn varchar(57), Funksjonskode varchar(5), Funksjonsnavn varchar(86), &#xA;      Artkode varchar(5), Artnavn varchar(75),  Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), År varchar(4), År2 varchar(4))&#xA; &#xA; -- Insert&#xA; insert @t exec SSB_Values_AlleAar2 @TabellNummer=@TableVar, @Filter=@ConFilter&#xA; insert @m exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;DELETE FROM [SSB_12367] WHERE Tid = @Year&#xA;&#xA;INSERT INTO [SSB_12367]&#xA;&#xA;SELECT dat.Regionkode,&#xA;  dat.Regnskapsomfangkode,&#xA;  met.Regnskapsomfangnavn,&#xA;  dat.Funksjonskode,&#xA;  met2.Funksjonsnavn,&#xA;  dat.Artkode,&#xA;  met3.Artnavn,&#xA;  dat.Statistikkvariabelkode,&#xA;  met4.Statistikkvariabelnavn,&#xA;  dat.Tid, &#xA;  dat.Verdi&#xA; &#xA;FROM @t dat&#xA;JOIN @m met ON met.Regnskapsomfangkode = dat.Regnskapsomfangkode&#xA;JOIN @m met2 ON met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m met3 On met3.Artkode = dat.Artkode&#xA;Join @m met4 On met4.Statistikkvariabelkode = dat.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="-- Variabels&#xA;declare @TableVar varchar(5)&#xA;declare @TableName varchar(150)&#xA;declare @ConFilter varchar(700)&#xA;declare @Year int&#xA;&#xA;Set @TableVar = '12367'&#xA;Set @TableName = (select table_name from information_schema.tables where table_name LIKE 'SSB_' + @TableVar + '%')&#xA;Set @Year = ?&#xA;&#xA;Set @ConFilter = CONCAT('KOKregnskapsomfa0000=A&amp;Tid=', CAST(@Year as VARCHAR(4)))&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsomfangkode varchar(1), Funksjonskode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode varchar(5), Regionnavn varchar(50), Regnskapsomfangkode varchar(1), Regnskapsomfangnavn varchar(57), Funksjonskode varchar(5), Funksjonsnavn varchar(86), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Artkode varchar(5), Artnavn varchar(75),  Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), År varchar(4), År2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Insert&#xA;&#x9;insert @t exec SSB_Values_AlleAar2 @TabellNummer=@TableVar, @Filter=@ConFilter&#xA;&#x9;insert @m exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;DELETE FROM [SSB_12367] WHERE Tid = @Year&#xA;&#xA;INSERT INTO [SSB_12367]&#xA;&#xA;SELECT&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Funksjonskode,&#xA;&#x9;&#x9;met2.Funksjonsnavn,&#xA;&#x9;&#x9;dat.Artkode,&#xA;&#x9;&#x9;met3.Artnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met4.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;FROM @t dat&#xA;JOIN @m met2 ON&#x9;met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m met3 On met3.Artkode = dat.Artkode&#xA;Join @m met4 On met4.Statistikkvariabelkode = dat.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::_4thYear"
@@ -1024,6 +1024,23 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
+          DTS:refId="Package\Økonomi 2\13202 Økonomisk oversikt balanse kommuner, etter balansedata, region, statistikkvariabel og år"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FF49ED30-A082-4A38-8F7A-A2C35D794A6B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="13202 Økonomisk oversikt balanse kommuner, etter balansedata, region, statistikkvariabel og år"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '13202'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Balansedatakode varchar(5), Regionkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Balansedatakode varchar(5), Balansedatanavn varchar(170), Regionkode Varchar(5), Regionnavn varchar(50), Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), Tid varchar(4), Tid2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar2 @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into SSB_13202&#xA;&#xA;Select&#x9;dat.Balansedatakode,&#xA;&#x9;&#x9;met.Balansedatanavn,&#xA;&#x9;&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met2.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid,&#xA;&#x9;&#x9;dat.Verdi&#xA;&#xA;from @t dat &#xA;Join @m met ON dat.Balansedatakode = met.Balansedatakode&#xA;Join @m met2 ON dat.Statistikkvariabelkode = met2.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\Økonomi 2\Script Task Year 4"
           DTS:CreationName="Microsoft.ScriptTask"
           DTS:Description="Script Task"
@@ -1031,7 +1048,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:ExecutableType="Microsoft.ScriptTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Script Task Year 4"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <ScriptProject
@@ -1040,15 +1057,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               VSTAMinorVersion="0"
               Language="CSharp"
               ReadWriteVariables="User::_4thYear">
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1168,6 +1176,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_459d4210480a40fdbdb8922cd39fa26c.Properties.Settings.get_Default():ST_459d4210480a40fdbdb8922cd39fa26c.Properties.Sett" +
+    "ings")]
+
+namespace ST_459d4210480a40fdbdb8922cd39fa26c.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ST_459d4210480a40fdbdb8922cd39fa26c.csproj"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1410,35 +1447,6 @@ namespace ST_459d4210480a40fdbdb8922cd39fa26c
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_459d4210480a40fdbdb8922cd39fa26c.Properties.Settings.get_Default():ST_459d4210480a40fdbdb8922cd39fa26c.Properties.Sett" +
-    "ings")]
-
-namespace ST_459d4210480a40fdbdb8922cd39fa26c.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
                 Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -1468,6 +1476,15 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -1727,7 +1744,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
-              SQLTask:SqlStatementSource="-- Variabels&#xA;declare @TableVar varchar(5)&#xA;declare @TableName varchar(150)&#xA;declare @ConFilter varchar(700)&#xA;declare @Year int&#xA;&#xA;Set @TableVar = '12367'&#xA;Set @TableName = (select table_name from information_schema.tables where table_name LIKE 'SSB_' + @TableVar + '%')&#xA;Set @Year = ?&#xA;&#xA;Set @ConFilter = CONCAT('KOKregnskapsomfa0000=A&amp;Tid=', CAST(@Year as VARCHAR(4)))&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; declare @t table(Regionkode varchar(5), Regnskapsomfangkode varchar(1), Funksjonskode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA; declare @m table(Regionkode varchar(5), Regionnavn varchar(50), Regnskapsomfangkode varchar(1), Regnskapsomfangnavn varchar(57), Funksjonskode varchar(5), Funksjonsnavn varchar(86), &#xA;      Artkode varchar(5), Artnavn varchar(75),  Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), År varchar(4), År2 varchar(4))&#xA; &#xA; -- Insert&#xA; insert @t exec SSB_Values_AlleAar2 @TabellNummer=@TableVar, @Filter=@ConFilter&#xA; insert @m exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;DELETE FROM [SSB_12367] WHERE Tid = @Year&#xA;&#xA;INSERT INTO [SSB_12367]&#xA;&#xA;SELECT dat.Regionkode,&#xA;  dat.Regnskapsomfangkode,&#xA;  met.Regnskapsomfangnavn,&#xA;  dat.Funksjonskode,&#xA;  met2.Funksjonsnavn,&#xA;  dat.Artkode,&#xA;  met3.Artnavn,&#xA;  dat.Statistikkvariabelkode,&#xA;  met4.Statistikkvariabelnavn,&#xA;  dat.Tid, &#xA;  dat.Verdi&#xA; &#xA;FROM @t dat&#xA;JOIN @m met ON met.Regnskapsomfangkode = dat.Regnskapsomfangkode&#xA;JOIN @m met2 ON met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m met3 On met3.Artkode = dat.Artkode&#xA;Join @m met4 On met4.Statistikkvariabelkode = dat.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="-- Variabels&#xA;declare @TableVar varchar(5)&#xA;declare @TableName varchar(150)&#xA;declare @ConFilter varchar(700)&#xA;declare @Year int&#xA;&#xA;Set @TableVar = '12367'&#xA;Set @TableName = (select table_name from information_schema.tables where table_name LIKE 'SSB_' + @TableVar + '%')&#xA;Set @Year = ?&#xA;&#xA;Set @ConFilter = CONCAT('KOKregnskapsomfa0000=A&amp;Tid=', CAST(@Year as VARCHAR(4)))&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsomfangkode varchar(1), Funksjonskode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode varchar(5), Regionnavn varchar(50), Regnskapsomfangkode varchar(1), Regnskapsomfangnavn varchar(57), Funksjonskode varchar(5), Funksjonsnavn varchar(86), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Artkode varchar(5), Artnavn varchar(75),  Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), År varchar(4), År2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Insert&#xA;&#x9;insert @t exec SSB_Values_AlleAar2 @TabellNummer=@TableVar, @Filter=@ConFilter&#xA;&#x9;insert @m exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;DELETE FROM [SSB_12367] WHERE Tid = @Year&#xA;&#xA;INSERT INTO [SSB_12367]&#xA;&#xA;SELECT&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Funksjonskode,&#xA;&#x9;&#x9;met2.Funksjonsnavn,&#xA;&#x9;&#x9;dat.Artkode,&#xA;&#x9;&#x9;met3.Artnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met4.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;FROM @t dat&#xA;JOIN @m met2 ON&#x9;met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m met3 On met3.Artkode = dat.Artkode&#xA;Join @m met4 On met4.Statistikkvariabelkode = dat.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::_3rdYear"
@@ -1754,15 +1771,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               VSTAMinorVersion="0"
               Language="CSharp"
               ReadWriteVariables="User::_3rdYear">
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1982,6 +1990,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_431afa28c1454c559e9ce1528391a33d.Properties.Settings.get_Default():ST_431afa28c1454c559e9ce1528391a33d.Properties.Sett" +
+    "ings")]
+
+namespace ST_431afa28c1454c559e9ce1528391a33d.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -2124,35 +2161,6 @@ namespace ST_431afa28c1454c559e9ce1528391a33d
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_431afa28c1454c559e9ce1528391a33d.Properties.Settings.get_Default():ST_431afa28c1454c559e9ce1528391a33d.Properties.Sett" +
-    "ings")]
-
-namespace ST_431afa28c1454c559e9ce1528391a33d.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
                 Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -2182,6 +2190,15 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -2402,7 +2419,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="12328 Økonomisk oversikt drift, etter region, art, statistikkvariabel og år"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2419,7 +2436,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="12362 Utgifter til tjenesteområdene, etter region, funksjon, art, statistikkvariabel og år"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2436,12 +2453,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="12367 Year 2"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
-              SQLTask:SqlStatementSource="-- Variabels&#xA;declare @TableVar varchar(5)&#xA;declare @TableName varchar(150)&#xA;declare @ConFilter varchar(700)&#xA;declare @Year int&#xA;&#xA;Set @TableVar = '12367'&#xA;Set @TableName = (select table_name from information_schema.tables where table_name LIKE 'SSB_' + @TableVar + '%')&#xA;Set @Year = ?&#xA;&#xA;Set @ConFilter = CONCAT('KOKregnskapsomfa0000=A&amp;Tid=', CAST(@Year as VARCHAR(4)))&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; declare @t table(Regionkode varchar(5), Regnskapsomfangkode varchar(1), Funksjonskode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA; declare @m table(Regionkode varchar(5), Regionnavn varchar(50), Regnskapsomfangkode varchar(1), Regnskapsomfangnavn varchar(57), Funksjonskode varchar(5), Funksjonsnavn varchar(86), &#xA;      Artkode varchar(5), Artnavn varchar(75),  Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), År varchar(4), År2 varchar(4))&#xA; &#xA; -- Insert&#xA; insert @t exec SSB_Values_AlleAar2 @TabellNummer=@TableVar, @Filter=@ConFilter&#xA; insert @m exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;DELETE FROM [SSB_12367] WHERE Tid = @Year&#xA;&#xA;INSERT INTO [SSB_12367]&#xA;&#xA;SELECT dat.Regionkode,&#xA;  dat.Regnskapsomfangkode,&#xA;  met.Regnskapsomfangnavn,&#xA;  dat.Funksjonskode,&#xA;  met2.Funksjonsnavn,&#xA;  dat.Artkode,&#xA;  met3.Artnavn,&#xA;  dat.Statistikkvariabelkode,&#xA;  met4.Statistikkvariabelnavn,&#xA;  dat.Tid, &#xA;  dat.Verdi&#xA; &#xA;FROM @t dat&#xA;JOIN @m met ON met.Regnskapsomfangkode = dat.Regnskapsomfangkode&#xA;JOIN @m met2 ON met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m met3 On met3.Artkode = dat.Artkode&#xA;Join @m met4 On met4.Statistikkvariabelkode = dat.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="-- Variabels&#xA;declare @TableVar varchar(5)&#xA;declare @TableName varchar(150)&#xA;declare @ConFilter varchar(700)&#xA;declare @Year int&#xA;&#xA;Set @TableVar = '12367'&#xA;Set @TableName = (select table_name from information_schema.tables where table_name LIKE 'SSB_' + @TableVar + '%')&#xA;Set @Year = ?&#xA;&#xA;Set @ConFilter = CONCAT('KOKregnskapsomfa0000=A&amp;Tid=', CAST(@Year as VARCHAR(4)))&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsomfangkode varchar(1), Funksjonskode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode varchar(5), Regionnavn varchar(50), Regnskapsomfangkode varchar(1), Regnskapsomfangnavn varchar(57), Funksjonskode varchar(5), Funksjonsnavn varchar(86), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Artkode varchar(5), Artnavn varchar(75),  Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), År varchar(4), År2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Insert&#xA;&#x9;insert @t exec SSB_Values_AlleAar2 @TabellNummer=@TableVar, @Filter=@ConFilter&#xA;&#x9;insert @m exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;DELETE FROM [SSB_12367] WHERE Tid = @Year&#xA;&#xA;INSERT INTO [SSB_12367]&#xA;&#xA;SELECT&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Funksjonskode,&#xA;&#x9;&#x9;met2.Funksjonsnavn,&#xA;&#x9;&#x9;dat.Artkode,&#xA;&#x9;&#x9;met3.Artnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met4.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;FROM @t dat&#xA;JOIN @m met2 ON&#x9;met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m met3 On met3.Artkode = dat.Artkode&#xA;Join @m met4 On met4.Statistikkvariabelkode = dat.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::_2ndYear"
@@ -2459,7 +2476,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:ExecutableType="Microsoft.ScriptTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Script Task Year 2"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <ScriptProject
@@ -2468,15 +2485,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               VSTAMinorVersion="0"
               Language="CSharp"
               ReadWriteVariables="User::_2ndYear">
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -2596,6 +2604,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_ccecccc1e4f94ed0b21bfd989ae27088.Properties.Settings.get_Default():ST_ccecccc1e4f94ed0b21bfd989ae27088.Properties.Sett" +
+    "ings")]
+
+namespace ST_ccecccc1e4f94ed0b21bfd989ae27088.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
@@ -2807,35 +2844,6 @@ namespace ST_ccecccc1e4f94ed0b21bfd989ae27088.Properties {
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_ccecccc1e4f94ed0b21bfd989ae27088.Properties.Settings.get_Default():ST_ccecccc1e4f94ed0b21bfd989ae27088.Properties.Sett" +
-    "ings")]
-
-namespace ST_ccecccc1e4f94ed0b21bfd989ae27088.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
                 Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -2865,6 +2873,15 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="ST_ccecccc1e4f94ed0b21bfd989ae27088.csproj"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -3108,7 +3125,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{AE0D4929-E462-41FE-B3C2-AB651B3F7203}"
-              SQLTask:SqlStatementSource="-- Variabels&#xA;declare @TableVar varchar(5)&#xA;declare @TableName varchar(150)&#xA;declare @ConFilter varchar(700)&#xA;declare @Year int&#xA;&#xA;Set @TableVar = '12367'&#xA;Set @TableName = (select table_name from information_schema.tables where table_name LIKE 'SSB_' + @TableVar + '%')&#xA;Set @Year = ?&#xA;&#xA;Set @ConFilter = CONCAT('KOKregnskapsomfa0000=A&amp;Tid=', CAST(@Year as VARCHAR(4)))&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; declare @t table(Regionkode varchar(5), Regnskapsomfangkode varchar(1), Funksjonskode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA; declare @m table(Regionkode varchar(5), Regionnavn varchar(50), Regnskapsomfangkode varchar(1), Regnskapsomfangnavn varchar(57), Funksjonskode varchar(5), Funksjonsnavn varchar(86), &#xA;      Artkode varchar(5), Artnavn varchar(75),  Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), År varchar(4), År2 varchar(4))&#xA; &#xA; -- Insert&#xA; insert @t exec SSB_Values_AlleAar2 @TabellNummer=@TableVar, @Filter=@ConFilter&#xA; insert @m exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;DELETE FROM [SSB_12367] WHERE Tid = @Year&#xA;&#xA;INSERT INTO [SSB_12367]&#xA;&#xA;SELECT dat.Regionkode,&#xA;  dat.Regnskapsomfangkode,&#xA;  met.Regnskapsomfangnavn,&#xA;  dat.Funksjonskode,&#xA;  met2.Funksjonsnavn,&#xA;  dat.Artkode,&#xA;  met3.Artnavn,&#xA;  dat.Statistikkvariabelkode,&#xA;  met4.Statistikkvariabelnavn,&#xA;  dat.Tid, &#xA;  dat.Verdi&#xA; &#xA;FROM @t dat&#xA;JOIN @m met ON met.Regnskapsomfangkode = dat.Regnskapsomfangkode&#xA;JOIN @m met2 ON met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m met3 On met3.Artkode = dat.Artkode&#xA;Join @m met4 On met4.Statistikkvariabelkode = dat.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="-- Variabels&#xA;declare @TableVar varchar(5)&#xA;declare @TableName varchar(150)&#xA;declare @ConFilter varchar(700)&#xA;declare @Year int&#xA;&#xA;Set @TableVar = '12367'&#xA;Set @TableName = (select table_name from information_schema.tables where table_name LIKE 'SSB_' + @TableVar + '%')&#xA;Set @Year = ?&#xA;&#xA;Set @ConFilter = CONCAT('KOKregnskapsomfa0000=A&amp;Tid=', CAST(@Year as VARCHAR(4)))&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Regionkode varchar(5), Regnskapsomfangkode varchar(1), Funksjonskode varchar(5), Artkode varchar(5), Statistikkvariabelkode varchar(12), Tid varchar(4), Verdi numeric(18,4))&#xA;&#x9;declare @m table(Regionkode varchar(5), Regionnavn varchar(50), Regnskapsomfangkode varchar(1), Regnskapsomfangnavn varchar(57), Funksjonskode varchar(5), Funksjonsnavn varchar(86), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Artkode varchar(5), Artnavn varchar(75),  Statistikkvariabelkode varchar(12), Statistikkvariabelnavn varchar(15), År varchar(4), År2 varchar(4))&#xA;&#x9;&#xA;&#x9;-- Insert&#xA;&#x9;insert @t exec SSB_Values_AlleAar2 @TabellNummer=@TableVar, @Filter=@ConFilter&#xA;&#x9;insert @m exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;DELETE FROM [SSB_12367] WHERE Tid = @Year&#xA;&#xA;INSERT INTO [SSB_12367]&#xA;&#xA;SELECT&#x9;dat.Regionkode,&#xA;&#x9;&#x9;dat.Funksjonskode,&#xA;&#x9;&#x9;met2.Funksjonsnavn,&#xA;&#x9;&#x9;dat.Artkode,&#xA;&#x9;&#x9;met3.Artnavn,&#xA;&#x9;&#x9;dat.Statistikkvariabelkode,&#xA;&#x9;&#x9;met4.Statistikkvariabelnavn,&#xA;&#x9;&#x9;dat.Tid, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;FROM @t dat&#xA;JOIN @m met2 ON&#x9;met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m met3 On met3.Artkode = dat.Artkode&#xA;Join @m met4 On met4.Statistikkvariabelkode = dat.Statistikkvariabelkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::_1stYear"
@@ -3127,7 +3144,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="12913 Økonomisk oversikt drift kommune ekskl kommunale foretak og interkommunale selskaper, etter region, art, statistikkvariabel og år"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -3144,7 +3161,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="12914 Økonomisk oversikt investering kommune ekskl kommunale foretak og interkommunale selskaper, etter region, art, statistikkvariabel og år"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -3375,14 +3392,34 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
   </resheader>
 </root>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3ad1a0b1a2b249c7bf20b574eb992db6.Properties.Settings.get_Default():ST_3ad1a0b1a2b249c7bf20b574eb992db6.Properties.Sett" +
+    "ings")]
+
+namespace ST_3ad1a0b1a2b249c7bf20b574eb992db6.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
@@ -3526,35 +3563,6 @@ namespace ST_3ad1a0b1a2b249c7bf20b574eb992db6
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3ad1a0b1a2b249c7bf20b574eb992db6.Properties.Settings.get_Default():ST_3ad1a0b1a2b249c7bf20b574eb992db6.Properties.Sett" +
-    "ings")]
-
-namespace ST_3ad1a0b1a2b249c7bf20b574eb992db6.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
                 Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -3584,6 +3592,15 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -3878,7 +3895,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           PanelSize="249,120"
           Size="249,163"
           Id="Package\Delay 1"
-          TopLeft="475,532" />
+          TopLeft="471,659" />
         <NodeLayout
           Size="163,42"
           Id="Package\Delay 2\5 Second Delay"
@@ -3889,7 +3906,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           PanelSize="224,109"
           Size="224,152"
           Id="Package\Delay 2"
-          TopLeft="753,522.5" />
+          TopLeft="752,663.5" />
         <NodeLayout
           Size="163,42"
           Id="Package\Delay 3\5 Second Delay"
@@ -3900,7 +3917,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           PanelSize="214,118"
           Size="214,161"
           Id="Package\Delay 3"
-          TopLeft="1016,520" />
+          TopLeft="1005,667" />
         <NodeLayout
           Size="163,42"
           Id="Package\Delay 4\5 Second Delay"
@@ -3911,7 +3928,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           PanelSize="228,110"
           Size="228,153"
           Id="Package\Delay 4"
-          TopLeft="1267,519" />
+          TopLeft="1254,671" />
         <NodeLayout
           Size="227,91"
           Id="Package\Økonomi 1\12179 Økonomisk oversikt balanse kommuner ekskl kommunale foretak og interkommunale selskap, etter region, balansedata, statistikkvariabel og år"
@@ -3972,14 +3989,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="142,42"
           Id="Package\Økonomi 2\12367 Year 4"
-          TopLeft="47.5,296" />
+          TopLeft="48.5,429" />
         <NodeLayout
           Size="165,42"
           Id="Package\Økonomi 2\Script Task Year 4"
-          TopLeft="37,213" />
+          TopLeft="38,346" />
         <EdgeLayout
           Id="Package\Økonomi 2.PrecedenceConstraints[Constraint]"
-          TopLeft="119,255">
+          TopLeft="120,388">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3999,11 +4016,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="189,83"
+          Id="Package\Økonomi 2\13202 Økonomisk oversikt balanse kommuner, etter balansedata, region, statistikkvariabel og år"
+          TopLeft="22,216" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="234,393"
-          Size="234,436"
+          PanelSize="255,527"
+          Size="255,570"
           Id="Package\Økonomi 2"
           TopLeft="481,60" />
         <NodeLayout
@@ -4143,54 +4164,66 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="1267,66" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="446,344.5">
+          TopLeft="261.5,635.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="29,269"
+              EndConnector="293.833333333333,23.5"
               Start="0,0"
-              End="21.5,269">
+              End="293.833333333333,16">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="10.5,0" />
+                    End="0,10.0099760574621" />
                   <mssgle:CubicBezierSegment
-                    Point1="10.5,0"
-                    Point2="14.5,0"
-                    Point3="14.5,4" />
+                    Point1="0,10.0099760574621"
+                    Point2="0,14.0099760574621"
+                    Point3="4,14.0099760574621" />
                   <mssgle:LineSegment
-                    End="14.5,265" />
+                    End="289.833333333333,14.0099760574621" />
                   <mssgle:CubicBezierSegment
-                    Point1="14.5,265"
-                    Point2="14.5,269"
-                    Point3="18.5,269" />
+                    Point1="289.833333333333,14.0099760574621"
+                    Point2="293.833333333333,14.0099760574621"
+                    Point3="293.833333333333,18.0099760574621" />
                   <mssgle:LineSegment
-                    End="21.5,269" />
+                    End="293.833333333333,16" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-10.804453125,-17.609375,50.60890625,11.609375"
+              BoundingBox="121.612213541667,19.0099760574621,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="598.75,532">
+          TopLeft="635.666666666667,659">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-36"
+              EndConnector="-68.3333333333333,-29"
               Start="0,0"
-              End="0,-28.5">
+              End="-68.3333333333333,-21.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-28.5" />
+                    End="0,-10.5026975489512" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-10.5026975489512"
+                    Point2="0,-14.5026975489512"
+                    Point3="-4,-14.5026975489512" />
+                  <mssgle:LineSegment
+                    End="-64.3333333333333,-14.5026975489512" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-64.3333333333333,-14.5026975489512"
+                    Point2="-68.3333333333333,-14.5026975489512"
+                    Point3="-68.3333333333333,-18.5026975489512" />
+                  <mssgle:LineSegment
+                    End="-68.3333333333333,-21.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4201,18 +4234,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="865.75,522.5">
+          TopLeft="900,663.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-32.5"
+              EndConnector="-71.6666666666666,-173.5"
               Start="0,0"
-              End="0,-25">
+              End="-71.6666666666666,-166">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-25" />
+                    End="0,-82.7917607850398" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-82.7917607850398"
+                    Point2="0,-86.7917607850398"
+                    Point3="-4,-86.7917607850398" />
+                  <mssgle:LineSegment
+                    End="-67.6666666666666,-86.7917607850398" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-67.6666666666666,-86.7917607850398"
+                    Point2="-71.6666666666666,-86.7917607850398"
+                    Point3="-71.6666666666666,-90.7917607850398" />
+                  <mssgle:LineSegment
+                    End="-71.6666666666666,-166" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4223,18 +4268,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="1122.25,520">
+          TopLeft="1146.33333333333,667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-37"
+              EndConnector="-66.3333333333333,-184"
               Start="0,0"
-              End="0,-29.5">
+              End="-66.3333333333333,-176.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-29.5" />
+                    End="0,-88.141437254201" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-88.141437254201"
+                    Point2="0,-92.141437254201"
+                    Point3="-4,-92.141437254201" />
+                  <mssgle:LineSegment
+                    End="-62.3333333333333,-92.141437254201" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-62.3333333333333,-92.141437254201"
+                    Point2="-66.3333333333333,-92.141437254201"
+                    Point3="-66.3333333333333,-96.141437254201" />
+                  <mssgle:LineSegment
+                    End="-66.3333333333333,-176.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4245,18 +4302,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="1383.75,519">
+          TopLeft="1404.66666666667,671">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-25"
+              EndConnector="-18.1666666666667,-177"
               Start="0,0"
-              End="0,-17.5">
+              End="-18.1666666666667,-169.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-17.5" />
+                    End="0,-67.5400696864111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-67.5400696864111"
+                    Point2="0,-71.5400696864111"
+                    Point3="-4,-71.5400696864111" />
+                  <mssgle:LineSegment
+                    End="-14.1666666666667,-71.5400696864111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.1666666666667,-71.5400696864111"
+                    Point2="-18.1666666666667,-71.5400696864111"
+                    Point3="-18.1666666666667,-75.5400696864111" />
+                  <mssgle:LineSegment
+                    End="-18.1666666666667,-169.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4267,37 +4336,37 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="635.666666666667,496">
+          TopLeft="649.666666666667,630">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="193.333333333333,26.5"
+              EndConnector="178.333333333333,33.5"
               Start="0,0"
-              End="193.333333333333,19">
+              End="178.333333333333,26">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,9.24503112577815" />
+                    End="0,12.7321188746169" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,9.24503112577815"
-                    Point2="0,13.2450311257781"
-                    Point3="4,13.2450311257781" />
+                    Point1="0,12.7321188746169"
+                    Point2="0,16.7321188746169"
+                    Point3="4,16.7321188746169" />
                   <mssgle:LineSegment
-                    End="189.333333333333,13.2450311257781" />
+                    End="174.333333333333,16.7321188746169" />
                   <mssgle:CubicBezierSegment
-                    Point1="189.333333333333,13.2450311257781"
-                    Point2="193.333333333333,13.2450311257781"
-                    Point3="193.333333333333,17.2450311257781" />
+                    Point1="174.333333333333,16.7321188746169"
+                    Point2="178.333333333333,16.7321188746169"
+                    Point3="178.333333333333,20.7321188746169" />
                   <mssgle:LineSegment
-                    End="193.333333333333,19" />
+                    End="178.333333333333,26" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="71.3622135416667,18.2450311257781,50.60890625,11.609375"
+              BoundingBox="63.8622135416667,21.7321188746169,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4307,33 +4376,33 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="184,30"
+              EndConnector="173,177"
               Start="0,0"
-              End="184,22.5">
+              End="173,169.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,10.9866330879504" />
+                    End="0,84.4211352189074" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,10.9866330879504"
-                    Point2="0,14.9866330879504"
-                    Point3="4,14.9866330879504" />
+                    Point1="0,84.4211352189074"
+                    Point2="0,88.4211352189074"
+                    Point3="4,88.4211352189074" />
                   <mssgle:LineSegment
-                    End="180,14.9866330879504" />
+                    End="169,88.4211352189074" />
                   <mssgle:CubicBezierSegment
-                    Point1="180,14.9866330879504"
-                    Point2="184,14.9866330879504"
-                    Point3="184,18.9866330879504" />
+                    Point1="169,88.4211352189074"
+                    Point2="173,88.4211352189074"
+                    Point3="173,92.4211352189074" />
                   <mssgle:LineSegment
-                    End="184,22.5" />
+                    End="173,169.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="66.695546875,19.9866330879504,50.60890625,11.609375"
+              BoundingBox="61.1955468750001,93.4211352189074,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4343,33 +4412,33 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="181.333333333333,36"
+              EndConnector="168.333333333333,188"
               Start="0,0"
-              End="181.333333333333,28.5">
+              End="168.333333333333,180.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.9824732229796" />
+                    End="0,89.9084712755599" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.9824732229796"
-                    Point2="0,17.9824732229796"
-                    Point3="4,17.9824732229796" />
+                    Point1="0,89.9084712755599"
+                    Point2="0,93.9084712755599"
+                    Point3="4,93.9084712755599" />
                   <mssgle:LineSegment
-                    End="177.333333333333,17.9824732229796" />
+                    End="164.333333333333,93.9084712755599" />
                   <mssgle:CubicBezierSegment
-                    Point1="177.333333333333,17.9824732229796"
-                    Point2="181.333333333333,17.9824732229796"
-                    Point3="181.333333333333,21.9824732229796" />
+                    Point1="164.333333333333,93.9084712755599"
+                    Point2="168.333333333333,93.9084712755599"
+                    Point3="168.333333333333,97.9084712755599" />
                   <mssgle:LineSegment
-                    End="181.333333333333,28.5" />
+                    End="168.333333333333,180.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="65.3622135416666,22.9824732229796,50.60890625,11.609375"
+              BoundingBox="58.8622135416666,98.9084712755599,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
