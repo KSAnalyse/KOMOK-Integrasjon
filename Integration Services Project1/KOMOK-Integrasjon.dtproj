@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">VK-C0D0E-360</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACiFSDAMn+Ue7xO8TjEh5gwAAAAACAAAAAAADZgAAwAAAABAAAAC+SYbpWH01CzfesBnO9m4bAAAAAASAAACgAAAAEAAAADqMDwGuaSRnFOhUYK2/pCSIAAAAku+qqNfrcqWCBCUHWGSJAND3Kb/5tJ6FC4c6ubRR9oFktQW8hvSomO474cLs5PlXau9JzPsVcgUS6kvU3HEOaLbA69jx3cR8wsIXgeR2zWSN2vBLQnKEsqm05tj4g8mptAIMFF3S1fUgfO4Y+53elZWpYp8VPI9+qb8BNGbMycxJpKSh816fxBQAAABCwwhqPfietn/awt8gjyogANnIyg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACiFSDAMn+Ue7xO8TjEh5gwAAAAACAAAAAAADZgAAwAAAABAAAABW4VJqMFlQVjL4D9wEdXp+AAAAAASAAACgAAAAEAAAALQuCI1EmxE2KLv9TYv7I7aIAAAAAoe2fASA0YeufWoPeZgYfMkgoGe9A40FFoQRSay5Gl6sl1LmUgyw7mV4cbMBKZn04+JH6iR94TjBb2Oxv3bFhB9u3Gt4ARZO52WDq/io1zEL+2H+GvhTOCP/fo1QEx30gH8++GOdsNq0nG+RjDTLaVOy7WGBjd5obeat1bvRcV2hUVn1/GXwsxQAAABlJ/wsZMqMfbXuk3Ns+cOcMd+Atw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -182,10 +182,10 @@
                 <SSIS:Property SSIS:Name="Name">SSB Økonomi</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">14</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{775B01D3-EEAE-4E07-BFF7-F226039FD3B6}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C0ACF794-75E9-4086-BCC6-E9DB9D8F6E9D}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -199,10 +199,10 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{A1F30E32-E6AD-48FF-B2C6-954E50E0A71D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{0054FC26-26F3-4E4A-A17A-591D6A8E50D5}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -235,7 +235,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=vk-sxd0e-003;Initial Catalog=KOMØK Data;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=vk-sxd0e-003;Initial Catalog=KOMOK Data;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -250,7 +250,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">KOMØK Data</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">KOMOK Data</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
