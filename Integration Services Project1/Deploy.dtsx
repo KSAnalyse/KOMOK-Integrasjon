@@ -7,12 +7,12 @@
   DTS:CreatorName="I04\vk431"
   DTS:DTSID="{9F938FB9-EC23-416C-BAE2-4507132C74FB}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
   DTS:LocaleID="1044"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{0054FC26-26F3-4E4A-A17A-591D6A8E50D5}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{E43D7AF8-09E7-4F96-B432-15F6E0ED24E6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,7 +23,7 @@
       DTS:ObjectName="SSAS">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=vk-sxd0e-003;Initial Catalog=KOMOK Data;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
+          DTS:ConnectionString="Data Source=vk-sxd0e-002;Initial Catalog=KOMOK Data;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -42,7 +42,7 @@
       <DTS:ObjectData>
         <ASProcessingData
           ConnectionName="SSAS"
-          ProcessingCommands="{&#xA;  &quot;sequence&quot;: {&#xA;    &quot;operations&quot;: []&#xA;  }&#xA;}" />
+          ProcessingCommands="{&#xA;  &quot;sequence&quot;: {&#xA;    &quot;operations&quot;: [&#xA;      {&#xA;        &quot;refresh&quot;: {&#xA;          &quot;type&quot;: &quot;full&quot;,&#xA;          &quot;objects&quot;: [&#xA;            {&#xA;              &quot;database&quot;: &quot;KOMOK Data&quot;&#xA;            }&#xA;          ]&#xA;        }&#xA;      }&#xA;    ]&#xA;  }&#xA;}" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
